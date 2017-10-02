@@ -9,10 +9,15 @@ For more info, see for example (https://github.com/Lasagne/Recipes/blob/master/e
 
 ## Dependencies
 
-* gym: pip install gym
-* gym['atari']: pip install gym['atari']
-* chainerrl: pip install chainerrl 
+The only dependencies of this project are:
 
+* Gym with the atari environment
+* ChainerRL
+* scikit-image
+
+```
+pip install gym gym[atari] chainerrl scikit-image
+```
 
 ## Training
 
@@ -37,6 +42,6 @@ python examples/mygym/train_a3c_gym.py 4 --env Boxing-v0 --outdir outdirboxing -
 
 * examples/mygym/train_a3c_gym.py: this is the launcher. You can see the whole list of parameters by typing straightaway (python examples/mygym/train_a3c_gym.py)
 * examples/mygym/guided_relu.py: implements the guided relu. The guided relu behaves as a standard relu function during training and implements guided backpropagation during testing phase. For this to work properly the agent should turn off the training flag of chainer (chainer.config.train). See train_a3c_gym.py file.
-* examples/mygym/env_gym_chainer.py: environment which links gym with chainer. It allows to use several frames as input (in a similar way as the ALE environment). That was the easiest way a found to use multiple frames as input with the gym framework in ChainerRL.
+* examples/mygym/env_gym_chainer.py: environment which links gym with chainer. It allows to use several frames as input (in a similar way as the ALE environment). That was the easiest way I found to use multiple frames as input with the gym framework in ChainerRL.
 * examples/mygym/iclr_acer_link.py: implements the network (it is only the shared part between the actor and the critic). 
 * examples/mygym/saliency_a3c.py: basically overrides the act function of the A3C agent in chainerRL to calculate/draw the saliency maps during testing. Otherwise it behaves as a normal a3c agent.
