@@ -5,11 +5,19 @@ Implementation of Guided Backpropagation in Chainer (ChainerRL)
 
 This is an implementation of Guided Backpropagation over an A3C agent in ChainerRL (https://github.com/chainer/chainerrl). Guided Backpropagation is a technique to compute a saliency map of a network, so you actually can see which parts of the images are more interesting to the agent.
 
+The saliency map is only computed during testing. Hence, you need to train an agent to actually see something useful.
+
 For more info, see for example (https://github.com/Lasagne/Recipes/blob/master/examples/Saliency%20Maps%20and%20Guided%20Backpropagation.ipynb)
+
+## Implementation Notes
+
+In this implementation saliency maps are stored in the red channel (value) and green channel (critic) in two different video players. The other channels are used to store the luminance of the original image. This way, the saliency map can be shown jointly with the input.
+
+![](https://user-images.githubusercontent.com/7602074/31092790-c9834870-a7af-11e7-98c1-5accd274acea.gif)
 
 ## Dependencies
 
-The only dependencies of this project are:
+The dependencies of this project are:
 
 * Gym with the atari environment
 * ChainerRL
@@ -28,7 +36,7 @@ python examples/mygym/train_a3c_gym.py 4 --env Boxing-v0 --outdir outdirboxing -
 
 ```
 
-Train could take a lot of time. Some games could produce good results after a few hours or just a day of training. 
+Training could take a lot of time. Some games could produce good results after a few hours or just a day of training in commodity hardware (cpu). 
 
 ## Testing:
 
