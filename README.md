@@ -7,6 +7,8 @@ This is an implementation of Guided Backpropagation over an A3C agent in Chainer
 
 The saliency map is only computed during testing. Hence, you need to train an agent to actually see something useful.
 
+The original paper in which Guided Backpropagation is explained (https://arxiv.org/abs/1412.6806 - Striving for Simplicity: The All Convolutional Net)
+
 For more info, see for example (https://github.com/Lasagne/Recipes/blob/master/examples/Saliency%20Maps%20and%20Guided%20Backpropagation.ipynb)
 
 ## Implementation Notes
@@ -36,7 +38,7 @@ python examples/mygym/train_a3c_gym.py 4 --env Boxing-v0 --outdir outdirboxing -
 
 ```
 
-Training could take a lot of time. Some games could produce good results after a few hours or just a day of training in commodity hardware (cpu). 
+Training could take a lot of time. Some games could produce good results after a few hours or just a day of training in commodity hardware (e.g. 8 threads in cpu). 
 
 ## Testing:
 
