@@ -13,7 +13,7 @@ For more info, see for example (https://github.com/Lasagne/Recipes/blob/master/e
 
 ## Implementation Notes
 
-In this implementation saliency maps are stored in the red channel (value) and green channel (critic) in two different video players. The other channels are used to store the luminance of the original image. This way, the saliency map can be shown jointly with the input.
+In this implementation saliency maps are stored in the red channel (critic) and green channel (actor) in two different video players. The other channels are used to store the luminance of the original image. This way, the saliency map can be shown jointly with the input.
 
 ![](https://user-images.githubusercontent.com/7602074/31092790-c9834870-a7af-11e7-98c1-5accd274acea.gif)
 
@@ -50,7 +50,7 @@ python examples/mygym/train_a3c_gym.py 4 --env Boxing-v0 --outdir outdirboxing -
 
 ## Explanation of the files
 
-* examples/mygym/train_a3c_gym.py: this is the launcher. You can see the whole list of parameters by typing straightaway (python examples/mygym/train_a3c_gym.py)
+* examples/mygym/train_a3c_gym.py: this is the launcher. You can see the whole list of parameters by typing straightaway (python examples/mygym/train_a3c_gym.py -h)
 * examples/mygym/guided_relu.py: implements the guided relu. The guided relu behaves as a standard relu function during training and implements guided backpropagation during testing phase. For this to work properly the agent should turn off the training flag of chainer (chainer.config.train). See train_a3c_gym.py file.
 * examples/mygym/env_gym_chainer.py: environment which links gym with chainer. It allows to use several frames as input (in a similar way as the ALE environment). That was the easiest way I found to use multiple frames as input with the gym framework in ChainerRL.
 * examples/mygym/iclr_acer_link.py: implements the network (it is only the shared part between the actor and the critic). 
