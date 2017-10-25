@@ -20,15 +20,17 @@ try:
         return cv2.resize(img, size, interpolation=cv2.INTER_LINEAR)
 
 except Exception:
-    from PIL import Image
+    from PIL import Image, ImageFilter
 
     warnings.warn(
         'Since cv2 is not available PIL will be used instead to resize images.'
         ' This might affect the resulting images.')
 
     def imresize(img, size):
-        return np.asarray(Image.fromarray(img).resize(size, Image.BILINEAR))
-
+        return np.asarray(Image.fromarray(img).resize(
+            size,
+            Image.BILINEAR).filter(ImageFilter.EDGE_ENHANCE))
+    
 
 class GymEnvironment(env.Env):
     """ Small wrapper for gym environments
@@ -39,7 +41,8 @@ class GymEnvironment(env.Env):
 
     """
 
-    def __init__(self, env, res_width, res_height, agent_history_length, render=False):
+    def __init__(self, env, res_width, res_height, agent_history_length,
+                 render=False):
         """ Initialization stuff
         
         Parameters:
